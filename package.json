@@ -1,0 +1,13 @@
+{
+    "name": "eurovisionworld-scraper",
+    "description": "This simple app scrapes the data from Eurovisionworld.com, writes it to a JSON file and sends it back to the user.",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "dependencies": {
+        "axios": "^0.19.2",
+        "cheerio": "^1.0.0-rc.3",
+        "express": "^4.17.1",
+        "puppeteer": "^5.2.1"
+    }
+}

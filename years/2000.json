@@ -1,0 +1,148 @@
+{
+    "year": "2000",
+    "results": [{
+            "country_name": "Denmark",
+            "country_code": "DK",
+            "points": "195",
+            "place": "1"
+        },
+        {
+            "country_name": "Russia",
+            "country_code": "RU",
+            "points": "155",
+            "place": "2"
+        },
+        {
+            "country_name": "Latvia",
+            "country_code": "LV",
+            "points": "136",
+            "place": "3"
+        },
+        {
+            "country_name": "Estonia",
+            "country_code": "EE",
+            "points": "98",
+            "place": "4"
+        },
+        {
+            "country_name": "Germany",
+            "country_code": "DE",
+            "points": "96",
+            "place": "5"
+        },
+        {
+            "country_name": "Ireland",
+            "country_code": "IE",
+            "points": "92",
+            "place": "6"
+        },
+        {
+            "country_name": "Sweden",
+            "country_code": "SE",
+            "points": "88",
+            "place": "7"
+        },
+        {
+            "country_name": "Malta",
+            "country_code": "MT",
+            "points": "73",
+            "place": "8"
+        },
+        {
+            "country_name": "Croatia",
+            "country_code": "HR",
+            "points": "70",
+            "place": "9"
+        },
+        {
+            "country_name": "Turkey",
+            "country_code": "TR",
+            "points": "59",
+            "place": "10"
+        },
+        {
+            "country_name": "Norway",
+            "country_code": "NO",
+            "points": "57",
+            "place": "11"
+        },
+        {
+            "country_name": "Iceland",
+            "country_code": "IS",
+            "points": "45",
+            "place": "12"
+        },
+        {
+            "country_name": "Netherlands",
+            "country_code": "NL",
+            "points": "40",
+            "place": "13"
+        },
+        {
+            "country_name": "Austria",
+            "country_code": "AT",
+            "points": "34",
+            "place": "14"
+        },
+        {
+            "country_name": "Macedonia",
+            "country_code": "MK",
+            "points": "29",
+            "place": "15"
+        },
+        {
+            "country_name": "United Kingdom",
+            "country_code": "GB",
+            "points": "28",
+            "place": "16"
+        },
+        {
+            "country_name": "Romania",
+            "country_code": "RO",
+            "points": "25",
+            "place": "17"
+        },
+        {
+            "country_name": "Spain",
+            "country_code": "ES",
+            "points": "18",
+            "place": "18"
+        },
+        {
+            "country_name": "Finland",
+            "country_code": "FI",
+            "points": "18",
+            "place": "18"
+        },
+        {
+            "country_name": "Switzerland",
+            "country_code": "CH",
+            "points": "14",
+            "place": "20"
+        },
+        {
+            "country_name": "Cyprus",
+            "country_code": "CY",
+            "points": "8",
+            "place": "21"
+        },
+        {
+            "country_name": "Israel",
+            "country_code": "IL",
+            "points": "7",
+            "place": "22"
+        },
+        {
+            "country_name": "France",
+            "country_code": "FR",
+            "points": "5",
+            "place": "23"
+        },
+        {
+            "country_name": "Belgium",
+            "country_code": "BE",
+            "points": "2",
+            "place": "24"
+        }
+    ]
+}
