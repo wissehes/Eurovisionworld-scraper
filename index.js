@@ -38,25 +38,27 @@ app.get("/year/:year", async(req, res) => {
     }
 
     table.children("tr").each(function(i) {
-            const result = {}
-                // Split by ":" because title would be: title='Eurovision 2019 Netherlands: Duncan Laurence - "Arcade"'
-            const song = $(this).children("td:nth-child(4)").find("a").attr("title").split(":")
-                // Remove the first item
-            song.shift()
-                // Join back if there was a ':' somewhere in the song name
-            result.song = song.join(":").trim()
-            result.country_code = $(this).attr("id").replace("v_tr_", "").toUpperCase()
-            result.country_name = countryNameList[result.country_code]
-            result.place = $(this).children("td:nth-child(1)").text()
-            result.points = $(this).children("td:nth-child(5)").text().trim()
-            if (year > 2015 && !$(this).children("td:nth-child(6)").text().includes("semi")) {
-                //$(this).children("td:nth-child(6)").remove("div")
-                result.jury_points = $(this).children("td:nth-child(7)").text()
-                result.tele_points = $(this).children("td:nth-child(6)").text().slice(0, result.jury_points.length)
-            }
-            response.results.push(result)
-        })
-        //fs.writeFileSync(`./years/${req.params.year}.json`, JSON.stringify(response))
+        const result = {}
+            // Split by ":" because title would be: title='Eurovision 2019 Netherlands: Duncan Laurence - "Arcade"'
+        const song = $(this).children("td:nth-child(4)").find("a").attr("title").split(":")
+            // Remove the first item
+        song.shift()
+            // Join back if there was a ':' somewhere in the song name
+        result.song = song.join(":").trim()
+        result.country_code = $(this).attr("id").replace("v_tr_", "").toUpperCase()
+        result.country_name = countryNameList[result.country_code]
+        result.place = $(this).children("td:nth-child(1)").text()
+        result.points = $(this).children("td:nth-child(5)").text().trim()
+        if (year > 2015 && !$(this).children("td:nth-child(6)").text().includes("semi")) {
+            //$(this).children("td:nth-child(6)").remove("div")
+            result.jury_points = $(this).children("td:nth-child(7)").text()
+            result.tele_points = $(this).children("td:nth-child(6)").text().slice(0, result.jury_points.length)
+        }
+        response.results.push(result)
+    })
+    if (config.saveYear) {
+        fs.writeFileSync(`./years/${req.params.year}.json`, JSON.stringify(response))
+    }
     res.json(response)
     await browser.close()
 })
