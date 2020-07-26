@@ -9,58 +9,48 @@ const config = require("./config")
 // Country list from https://github.com/i-rocky/country-list-js/
 const countryNameList = require("./countryNameList")
 
-app.get("/year/:year", async(req, res) => {
-    console.log("scraping...")
-    const year = req.params.year
-    if (!Number(year)) {
-        return res.status(400).json({
-            error: "Year should be a number."
-        })
-    } else if (year < 1956 || year > 2019) {
-        return res.status(400).json({
-            error: "Year should be between 1956 and 2019."
-        })
+const scrapeYear = require("./functions/scrapeYear")
+const scrapeCountry = require("./functions/scrapeCountry")
+
+app.get("/scrape2000s", async(req, res) => {
+    const years = [
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+    ]
+    for (i in years) {
+        const year = years[i]
+        await scrapeYear(year)
     }
-
-    const browser = await puppeteer.launch();
-    const page = await browser.newPage();
-
-    await page.goto(`https://eurovisionworld.com/eurovision/${year}`);
-
-    const content = await page.content();
-    const $ = cheerio.load(content)
-
-    let table = $('.v_table > tbody')
-
-    const response = {
-        year: req.params.year,
-        results: []
-    }
-
-    table.children("tr").each(function(i) {
-        const result = {}
-            // Split by ":" because title would be: title='Eurovision 2019 Netherlands: Duncan Laurence - "Arcade"'
-        const song = $(this).children("td:nth-child(4)").find("a").attr("title").split(":")
-            // Remove the first item
-        song.shift()
-            // Join back if there was a ':' somewhere in the song name
-        result.song = song.join(":").trim()
-        result.country_code = $(this).attr("id").replace("v_tr_", "").toUpperCase()
-        result.country_name = countryNameList[result.country_code]
-        result.place = $(this).children("td:nth-child(1)").text()
-        result.points = $(this).children("td:nth-child(5)").text().trim()
-        if (year > 2015 && !$(this).children("td:nth-child(6)").text().includes("semi")) {
-            //$(this).children("td:nth-child(6)").remove("div")
-            result.jury_points = $(this).children("td:nth-child(7)").text()
-            result.tele_points = $(this).children("td:nth-child(6)").text().slice(0, result.jury_points.length)
-        }
-        response.results.push(result)
-    })
-    if (config.saveYear) {
-        fs.writeFileSync(`./years/${req.params.year}.json`, JSON.stringify(response))
-    }
-    res.json(response)
-    await browser.close()
 })
+
+app.get("/country/:country", async(req, res) => {
+    const c = await scrapeCountry(req.params.country)
+    res.json(c)
+})
+
+app.get("/year/:year", async(req, res) => {
+    const y = await scrapeYear(req.params.year)
+    res.json(y)
+})
+
+
 
 app.listen(config.port, () => console.log(`Listening on port ${config.port}`))
